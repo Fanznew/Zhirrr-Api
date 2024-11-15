@@ -19,7 +19,8 @@ var scrapeYt = require("scrape-yt");
 var fetch = require('node-fetch');
 var cheerio = require('cheerio');
 var request = require('request');
-var TikTokScraper = require('tiktok-scraper');
+//var TikTokScraper = require('tiktok-scraper');
+const { tikdown } = require("nayan-media-downloader");
 var router  = express.Router();
 
 var { color, bgcolor } = require(__path + '/lib/color.js');
@@ -279,54 +280,77 @@ router.get('/remove', (req, res, next) => {
     }
 })
 
+// Route for fetching TikTok video details without watermark
 router.get('/tiktod', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
-        url = req.query.url
+        url = req.query.url;
 
+    if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'zahirgans') return res.json(loghandler.invalidKey);
+    if (!url) return res.json(loghandler.noturl);
 
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'zahirgans') return res.json(loghandler.invalidKey)
-     if (!url) return res.json(loghandler.noturl)
+    try {
+        // Fetch TikTok video data using tikdown
+        let result = await tikdown(url);
 
-     TikTokScraper.getVideoMeta(url, options)
-         .then(vid => {
-             console.log(vid)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 videoNoWm: vid
-             })
-         })
-         .catch(e => {
-             res.json(loghandler.invalidlink)
-         })
-})
+        // Destructure the required data
+        let { view, comment, play, share, duration, title, video, audio } = result.data;
 
+        // Send the video URL and metadata in the response
+        res.json({
+            status: true,
+            creator: `${creator}`,
+            message: "Video fetched successfully",
+            data: {
+                title,
+                view,
+                comment,
+                play,
+                share,
+                duration,
+                video_url: video,
+                audio_url: audio
+            }
+        });
+
+        // You can also use a messaging library to send the message with the video if needed
+        // conn.sendMessage(m.chat, { video: { url: video }, caption: title }, { quoted: m });
+
+    } catch (err) {
+        console.error(err);
+        res.json(loghandler.invalidlink);
+    }
+});
+
+// Route to stalk TikTok user profile
 router.get('/tiktod/stalk', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
-        username = req.query.username
+        username = req.query.username;
 
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'zahirgans') return res.json(loghandler.invalidKey)
-    if (!username) return res.json(loghandler.notusername)
+    if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'zahirgans') return res.json(loghandler.invalidKey);
+    if (!username) return res.json(loghandler.notusername);
 
+    try {
+        // Fetch user profile data using tikdown
+        let user = await tikdown(username);
 
-    TikTokScraper.getUserProfileInfo(username)
-        .then(user => {
-            res.json({
-                status : true,
-                creator : `${creator}`,
-                result : user
-            })
-        })
-        .catch(e => {
-             res.json({
-                 status : false,
-                 creator : `${creator}`,
-                 message : "error, mungkin username anda tidak valid"
-             })
-         })
-})
+        // Return the user profile data
+        res.json({
+            status: true,
+            creator: `${creator}`,
+            result: user.data
+        });
+    } catch (err) {
+        console.error(err);
+        res.json({
+            status: false,
+            creator: `${creator}`,
+            message: "Error, mungkin username anda tidak valid"
+        });
+    }
+});
+
 
 router.get('/randomquote', (req, res, next) => {
     var apikey = req.query.apikey
