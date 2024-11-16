@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="utf-8">
@@ -12,7 +12,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   <style>
-    /* Default Light Mode Styles */
+    /* Gaya Mode Terang Default */
     body {
         background-color: #f8f9fc;
         color: #212529;
@@ -27,7 +27,7 @@
         color: #212529;
     }
 
-    /* Dark Mode Styles */
+    /* Gaya Mode Gelap */
     body.dark-mode {
         background-color: #212529;
         color: #f8f9fc;
@@ -42,7 +42,7 @@
         color: #f8f9fc;
     }
 
-    /* Button styles for toggling dark mode */
+    /* Gaya Tombol untuk mengaktifkan Dark Mode */
     #darkModeToggle {
         color: #fff;
         background-color: #3f51b5;
@@ -76,19 +76,19 @@
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-        API Features
+        Fitur API
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fas fa-fw fa-arrow-down"></i>
-          <span>Social Media API</span>
+          <span>API Media Sosial</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Media Features</h6>
-            <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Tiktok Downloader</a>
-            <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=MASUKIN_APIKEY">Tiktok Stalk</a>
+            <h6 class="collapse-header">Fitur Media</h6>
+            <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Downloader Tiktok</a>
+            <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=MASUKIN_APIKEY">Stalk Tiktok</a>
           </div>
         </div>
       </li>
@@ -96,12 +96,12 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGithub"
           aria-expanded="true" aria-controls="collapseGithub">
           <i class="fas fa-fw fa-book"></i>
-          <span>Random API</span>
+          <span>API Random</span>
         </a>
         <div id="collapseGithub" class="collapse" aria-labelledby="headingGithub" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Random API</h6>
-            <a class="collapse-item" href="api/randomquote?apikey=MASUKIN_APIKEY">Random Quotes</a>
+            <h6 class="collapse-header">API Random</h6>
+            <a class="collapse-item" href="api/randomquote?apikey=MASUKIN_APIKEY">Kutipan Acak</a>
           </div>
         </div>
       </li>
@@ -109,11 +109,11 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIslamic" aria-expanded="true"
           aria-controls="collapseIslamic">
           <i class="fas fa-fw fa-table"></i>
-          <span>Text Maker API</span>
+          <span>API Pembuat Teks</span>
         </a>
         <div id="collapseIslamic" class="collapse" aria-labelledby="headingIslamic" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Text Maker API</h6>
+            <h6 class="collapse-header">API Pembuat Teks</h6>
             <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&theme=glitch&apikey=MASUKIN_APIKEY">Glitch</a>
             <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&text3=gwganteng&theme=google-suggestion&apikey=MASUKIN_APIKEY">Google Suggestion</a>
             <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=pubg&apikey=MASUKIN_APIKEY">PUBG</a>
@@ -127,24 +127,24 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseother" aria-expanded="true"
           aria-controls="collapseother">
           <i class="fab fa-fw fa-wpforms"></i>
-          <span>Other API</span>
+          <span>API Lainnya</span>
         </a>
         <div id="collapseother" class="collapse" aria-labelledby="headingother" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Other Menu</h6>
+            <h6 class="collapse-header">Menu Lainnya</h6>
             <a class="collapse-item" href="api/nulis?text=FanzOffc&apikey=MASUKAN_APIKEY">Nulis Buku</a>
             <a class="collapse-item" href="api/infonpm?query=FanzOffc-api&hostname=FanzOffc&apikey=MASUKAN_APIKEY">Info NPM</a>
-            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=MASUKAN_APIKEY">Short Link</a>
+            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=MASUKAN_APIKEY">Link Pendek</a>
           </div>
         </div>
       </li>
       <hr class="sidebar-divider">
       <div class="version" id="version-ruangadmin"></div>
 
-      <!-- Dark Mode Toggle Button -->
+      <!-- Tombol Dark Mode -->
       <li class="nav-item">
         <button id="darkModeToggle" class="nav-link">
-          <i class="fas fa-adjust"></i> Toggle Dark Mode
+          <i class="fas fa-adjust"></i> Toggle Mode Gelap
         </button>
       </li>
     </ul>
@@ -170,14 +170,14 @@
             </ol>
           </div>
 
-          <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
+          <!-- Baris untuk Menampilkan Statistik -->
+          <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total API Calls</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">API Terpakai</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">320</div>
                     </div>
                     <div class="col-auto">
@@ -187,27 +187,25 @@
                 </div>
               </div>
             </div>
-            <!-- End of Earnings (Monthly) Card Example -->
-
-            <!-- API Documentation -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">API Documentation</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Learn More</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Dokumentasi API</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Pelajari Lebih Lanjut</div>
                     </div>
                     <div class="col-auto">
-                      <a href="docs.html" class="btn btn-info">Go</a>
+                      <a href="docs.html" class="btn btn-info">Pergi</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End of API Documentation -->
           </div>
+          <!-- End Baris Statistik -->
         </div>
+        <!-- End Container Fluid-->
       </div>
     </div>
   </div>
@@ -218,7 +216,7 @@
   <script src="js/ruang-admin.min.js"></script>
 
   <script>
-    // Dark Mode Toggle Script
+    // Skrip Toggle Mode Gelap
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const sidebar = document.querySelector('.sidebar');
