@@ -11,6 +11,8 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
+  
+  <!-- Additional CSS for custom styles -->
   <style>
     /* Animasi pada item sidebar */
     .collapse-item {
@@ -56,6 +58,7 @@
       }
     }
   </style>
+
 </head>
 
 <body id="page-top">
@@ -90,24 +93,31 @@
             <h6 class="collapse-header">Media Features</h6>
             <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Tiktok Downloader</a>
             <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=MASUKIN_APIKEY">Tiktok Stalk</a>
-            <a class="collapse-item" href="api/youtube?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Youtube Downloader</a>
-            <a class="collapse-item" href="api/instagram?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Instagram Downloader</a>
-            <a class="collapse-item" href="api/facebook?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Facebook Downloader</a>
-            <a class="collapse-item" href="api/twitter?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Twitter Downloader</a>
           </div>
         </div>
       </li>
-
-      <!-- Islamic API Section (Text Maker API) -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIslamic"
-          aria-expanded="true" aria-controls="collapseIslamic">
-          <i class="fas fa-fw fa-pen"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGithub"
+          aria-expanded="true" aria-controls="collapseGithub">
+          <i class="fas fa-fw fa-book"></i>
+          <span>Random API</span>
+        </a>
+        <div id="collapseGithub" class="collapse" aria-labelledby="headingGithub" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Random API</h6>
+            <a class="collapse-item" href="api/randomquote?apikey=MASUKIN_APIKEY">Random Quotes</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIslamic" aria-expanded="true"
+          aria-controls="collapseIslamic">
+          <i class="fas fa-fw fa-table"></i>
           <span>Text Maker API</span>
         </a>
         <div id="collapseIslamic" class="collapse" aria-labelledby="headingIslamic" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Text Maker Features</h6>
+            <h6 class="collapse-header">Text Maker API</h6>
             <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&theme=glitch&apikey=MASUKIN_APIKEY">Glitch</a>
             <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&text3=gwganteng&theme=google-suggestion&apikey=MASUKIN_APIKEY">Google Suggestion</a>
             <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=pubg&apikey=MASUKIN_APIKEY">PUBG</a>
@@ -117,26 +127,23 @@
           </div>
         </div>
       </li>
-
-      <!-- Islamic API Section -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIslamic"
-          aria-expanded="true" aria-controls="collapseIslamic">
-          <i class="fas fa-fw fa-praying-hands"></i>
-          <span>Islamic API</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseother" aria-expanded="true"
+          aria-controls="collapseother">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Other API</span>
         </a>
-        <div id="collapseIslamic" class="collapse" aria-labelledby="headingIslamic" data-parent="#accordionSidebar">
+        <div id="collapseother" class="collapse" aria-labelledby="headingother" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Islamic Features</h6>
-            <a class="collapse-item" href="api/alquran?surah=MASUKIN_SURAH&ayat=MASUKIN_AYAT&apikey=MASUKIN_APIKEY">Al-Quran</a>
-            <a class="collapse-item" href="api/prayer?city=MASUKIN_CITY&apikey=MASUKIN_APIKEY">Prayer Times</a>
-            <a class="collapse-item" href="api/ramadan?city=MASUKIN_CITY&apikey=MASUKIN_APIKEY">Ramadan Times</a>
-            <a class="collapse-item" href="api/hijri?date=MASUKIN_DATE&apikey=MASUKIN_APIKEY">Hijri Converter</a>
+            <h6 class="collapse-header">Other Menu</h6>
+            <a class="collapse-item" href="api/nulis?text=FanzOffc&apikey=MASUKAN_APIKEY">Nulis Buku</a>
+            <a class="collapse-item" href="api/infonpm?query=FanzOffc-api&hostname=FanzOffc&apikey=MASUKAN_APIKEY">Info NPM</a>
+            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=MASUKAN_APIKEY">Short Link</a>
           </div>
         </div>
       </li>
-
       <hr class="sidebar-divider">
+      <div class="version" id="version-ruangadmin"></div>
     </ul>
     <!-- Sidebar -->
 
@@ -148,54 +155,76 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Add the new navbar items -->
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <!-- Profile Header -->
-                <h6 class="dropdown-header">
-                  Profile
-                </h6>
-                <!-- Name -->
-                <a class="dropdown-item align-items-center" href="#">
-                  <div class="mb-3">
-                    <div class="small text-dark">Name
-                      <div class="small float-right"><b>John Doe</b></div>
+          <!-- Profile Dropdown -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="tasksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-tasks fa-fw"></i>
+        <span class="badge badge-success badge-counter">1</span>
+      </a>
+      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="tasksDropdown">
+        <h6 class="dropdown-header">Profile</h6>
+        <a class="dropdown-item align-items-center" href="#">
+          <div class="mb-3">
+            <div class="small text-dark">Name
+              <div class="small float-right"><b>John Doe</b></div>
+            </div>
+          </div>
+        </a>
+        <a class="dropdown-item align-items-center" href="#">
+          <div class="mb-3">
+            <div class="small text-dark">Date of Birth
+              <div class="small float-right"><b>January 1, 1990</b></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </li>
+    <div class="topbar-divider d-none d-sm-block"></div>
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+        <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        <!-- Optionally, you can add items here like "Logout" or any user actions -->
+      </div>
+    </li>
+  </ul>
+</nav>
+<!-- End Topbar -->
+
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Beranda</li>
+            </ol>
+          </div>
+
+          <div class="row mb-3">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Info Developer</div>
+                      <br>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">FanzOffc</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-laptop-code fa-2x text-gray-300"></i>
                     </div>
                   </div>
-                </a>
-                <!-- Date of Birth -->
-                <a class="dropdown-item align-items-center" href="#">
-                  <div class="mb-3">
-                    <div class="small text-dark">Date of Birth
-                      <div class="small float-right"><b>January 1, 1990</b></div>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- Divider -->
-                <div class="dropdown-divider"></div>
-
-                <!-- Logout -->
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                </div>
               </div>
-            </li>
-          </ul>
-        </nav>
-        <!-- End of Topbar -->
-
-        <div class="container-fluid">
-          <!-- Page Content -->
-          <h1 class="h3 mb-2 text-gray-800">API Dashboard</h1>
+            </div>
+          </div>
         </div>
+        <!-- Container Fluid-->
       </div>
     </div>
   </div>
@@ -206,12 +235,12 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="logoutModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -225,13 +254,13 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.js"></script>
   <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>  
+  <script src="js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>
