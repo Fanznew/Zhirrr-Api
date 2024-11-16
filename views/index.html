@@ -24,13 +24,15 @@
     }
 
     /* Menambahkan ikon sebelum item collapse */
-    .collapse-item:before {
-      content: "\2022"; /* Bullet point sebagai ikon */
-      color: #3f51b5;  /* Warna ikon */
-      font-size: 20px;
-      position: absolute;
-      left: 10px;
-    }
+.collapse-item:before {
+  content: ""; /* Menghapus bullet point */
+  /* Menghapus warna dan ukuran ikon */
+  color: transparent;
+  font-size: 0;
+  position: absolute;
+  left: 10px;
+}
+
 
     /* Hover effect untuk item collapse */
     .collapse-item:hover {
@@ -85,6 +87,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fas fa-fw fa-arrow-down"></i>
           <span>Social Media API</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
