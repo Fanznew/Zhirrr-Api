@@ -71,6 +71,18 @@
   margin: 0 auto; /* Menyusun teks agar terpusat secara horizontal */
 }
 
+footer.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030; /* Pastikan berada di atas elemen lainnya */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan untuk estetika */
+  }
+  
+  body {
+    padding-bottom: 60px; /* Pastikan konten tidak tertimpa footer */
+  }
+
   </style>
 
 </head>
@@ -83,7 +95,7 @@
         <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">FanzOffc's API</div>
+        <div class="sidebar-brand-text mx-3">FanzOffc API</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
