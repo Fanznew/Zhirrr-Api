@@ -71,37 +71,19 @@
   margin: 0 auto; /* Menyusun teks agar terpusat secara horizontal */
 }
 
-html, body {
-      height: 100%;
-      margin: 0;
-    }
-
-    #wrapper {
+/* Flexbox untuk layout utama */
+    #content-wrapper {
       display: flex;
       flex-direction: column;
-      min-height: 100%;
+      min-height: 100vh; /* Membuat konten mengambil tinggi penuh */
     }
 
-    #content-wrapper {
-      flex: 1;
+    #content {
+      flex-grow: 1; /* Konten utama akan mengisi ruang yang tersedia */
     }
 
-    footer.sticky-footer {
-      background-color: #f8f9fc;
-      text-align: center;
-      padding: 10px 0;
-      border-top: 1px solid #e3e6f0;
-      position: relative;
-      width: 100%;
-    }
-
-    .copyright {
-      font-size: 14px;
-      color: #6c757d;
-    }
-
-    .copyright a {
-      color: #007bff;
+    footer {
+      margin-top: auto; /* Memastikan footer berada di bawah */
     }
 
   </style>
@@ -297,15 +279,16 @@ html, body {
 <!-- Container Fluid-->
 
 <!-- Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2024 - Developed By 
-              <b><a href="https://files.catbox.moe/94spf7.jpg" target="_blank">FanzOffc</a></b>
-            </span>
-          </div>
-        </div>
-      </footer>
+<footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; 2024 - Developed By 
+        <b><a href="https://files.catbox.moe/94spf7.jpg" target="_blank">FanzOffc</a></b>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->  	
 
 
 
