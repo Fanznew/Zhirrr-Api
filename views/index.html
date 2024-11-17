@@ -72,23 +72,22 @@
 }
 
 html, body {
-    height: 100%; /* Pastikan halaman memenuhi tinggi penuh */
-    margin: 0; /* Hapus margin default */
-  }
+  height: 100%;
+  margin: 0;
+}
 
-  #wrapper {
-    min-height: 100%; /* Pastikan wrapper mencakup seluruh tinggi halaman */
-    display: flex;
-    flex-direction: column;
-  }
+#content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Pastikan konten mengisi minimal tinggi layar */
+}
 
-  #content-wrapper {
-    flex: 1 0 auto; /* Memastikan area konten fleksibel */
-  }
-
-  .sticky-footer {
-    flex-shrink: 0; /* Pastikan footer tidak menyusut */
-  }
+footer {
+  margin-top: auto; /* Dorong footer ke bawah */
+  background-color: #f8f9fc;
+  padding: 10px;
+  text-align: center;
+}
 
   </style>
 
@@ -362,7 +361,7 @@ html, body {
 <!-- Container Fluid-->
 
 <!-- Footer -->
-  <footer class="sticky-footer bg-white mt-auto">
+  <footer>
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>Copyright &copy; 2024 - Developed By 
