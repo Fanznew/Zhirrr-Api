@@ -72,11 +72,25 @@
 }
 
 footer.sticky-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1030; /* Pastikan footer berada di atas elemen lainnya */
-  }
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 1030; /* Pastikan footer berada di atas elemen lainnya */
+      background-color: #f8f9fa; /* Warna latar belakang */
+      border-top: 1px solid #e3e6f0; /* Garis pemisah */
+      font-size: 12px; /* Ukuran font kecil */
+      padding: 5px 0; /* Padding vertikal kecil */
+      text-align: center; /* Teks berada di tengah */
+    }
+
+    footer.sticky-footer a {
+      text-decoration: none;
+      color: #007bff; /* Warna tautan */
+    }
+
+    footer.sticky-footer a:hover {
+      text-decoration: underline; /* Efek hover pada tautan */
+    }
 
   </style>
 
