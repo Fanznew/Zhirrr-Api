@@ -3,9 +3,9 @@ var __path = process.cwd(),
      { color } = require(__path + '/lib/color.js')
 
 // Connection URL
-var url = 'https://fnzapi-115bb3fff19b.herokuapp.com';
+var url = '';
 try {
-if(url == 'https://fnzapi-48fecbd3ba07.herokuapp.com/') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
+if(url == '') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
 } catch (e) {
 	return;
 	}
