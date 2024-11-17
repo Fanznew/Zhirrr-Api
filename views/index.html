@@ -71,27 +71,12 @@
   margin: 0 auto; /* Menyusun teks agar terpusat secara horizontal */
 }
 
-/* Pastikan elemen HTML dan body mengisi layar sepenuhnya */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Wrapper konten utama */
-#content-wrapper {
-  flex: 1; /* Elemen ini akan mengambil sisa ruang yang ada */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Footer selalu berada di bawah */
-footer {
-  background-color: #f8f9fc;
-  padding: 10px;
-  text-align: center;
-}
+footer.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030; /* Pastikan footer berada di atas elemen lainnya */
+  }
 
   </style>
 
@@ -365,18 +350,16 @@ footer {
 <!-- Container Fluid-->
 
 <!-- Footer -->
-  <footer class="sticky-footer bg-white mt-auto">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright &copy; 2024 - Developed By 
-          <b><a href="img/logo/pan.jpg" target="_blank">FanzOffc</a></b>
-        </span>
-      </div>
+<footer class="sticky-footer bg-white fixed-bottom">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; 2024 - Developed By 
+        <b><a href="img/logo/pan.jpg" target="_blank">FanzOffc</a></b>
+      </span>
     </div>
-  </footer>
-  <!-- Footer -->
-
-
+  </div>
+</footer>
+<!-- Footer -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
