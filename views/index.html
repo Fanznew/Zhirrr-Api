@@ -71,19 +71,23 @@
   margin: 0 auto; /* Menyusun teks agar terpusat secara horizontal */
 }
 
+/* Pastikan elemen HTML dan body mengisi layar sepenuhnya */
 html, body {
   height: 100%;
   margin: 0;
-}
-
-#content-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Pastikan konten mengisi minimal tinggi layar */
 }
 
+/* Wrapper konten utama */
+#content-wrapper {
+  flex: 1; /* Elemen ini akan mengambil sisa ruang yang ada */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer selalu berada di bawah */
 footer {
-  margin-top: auto; /* Dorong footer ke bawah */
   background-color: #f8f9fc;
   padding: 10px;
   text-align: center;
@@ -361,7 +365,7 @@ footer {
 <!-- Container Fluid-->
 
 <!-- Footer -->
-  <footer>
+  <footer class="sticky-footer bg-white mt-auto">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>Copyright &copy; 2024 - Developed By 
