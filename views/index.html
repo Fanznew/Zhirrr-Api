@@ -5,159 +5,131 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="API documentation for FanzOffc's Rest API">
+  <meta name="author" content="FanzOffc">
   <title>Rest API - FanzOffc</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   
-  <!-- Additional CSS for custom styles -->
   <style>
-    /* Animasi pada item sidebar */
-    .collapse-item {
-      position: relative;
+    /* Sidebar Styling */
+    .sidebar {
+      background-color: #f8f9fc;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar .sidebar-brand {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .sidebar .collapse-item {
       padding: 10px 15px;
       font-size: 14px;
       color: #333;
       transition: all 0.3s ease;
     }
 
-    /* Menambahkan ikon sebelum item collapse */
-.collapse-item:before {
-  content: ""; /* Menghapus bullet point */
-  /* Menghapus warna dan ukuran ikon */
-  color: transparent;
-  font-size: 0;
-  position: absolute;
-  left: 10px;
-}
-
-
-    /* Hover effect untuk item collapse */
-    .collapse-item:hover {
+    .sidebar .collapse-item:hover {
       background-color: #f0f0f0;
       color: #3f51b5;
     }
 
-    /* Responsif untuk tampilan mobile */
+    /* Card Styling */
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Footer Styling */
+    footer.sticky-footer {
+      background-color: #f8f9fc;
+      padding: 15px 0;
+      border-top: 1px solid #e3e6f0;
+    }
+
+    footer.sticky-footer a {
+      text-decoration: none;
+      color: #4e73df;
+    }
+
+    footer.sticky-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsiveness */
     @media (max-width: 768px) {
       .sidebar {
         width: 100%;
       }
-
-      .sidebar .sidebar-brand {
-        text-align: center;
+      #content-wrapper {
+        margin-left: 0;
       }
-
       .sidebar .collapse-item {
         font-size: 16px;
       }
-
-      /* Menyesuaikan padding dan margin pada mobile */
-      .collapse-inner {
-        padding: 10px 0;
-      }
     }
-    
-    .simple-rest-api {
-  font-size: 12px; /* Ukuran teks lebih kecil */
-  font-weight: 600; /* Menambah ketebalan font */
-  color: #6c757d; /* Warna teks */
-  padding-left: 0; /* Menghapus padding kiri agar pas di tengah */
-  text-align: center; /* Membuat teks terpusat */
-  width: 100%; /* Memastikan elemen mengisi ruang penuh */
-  display: block; /* Agar elemen bersifat block-level dan memenuhi lebar container */
-  margin: 0 auto; /* Menyusun teks agar terpusat secara horizontal */
-}
-
   </style>
-
 </head>
 
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+          <img src="img/logo/logo2.png" alt="Logo">
         </div>
         <div class="sidebar-brand-text mx-3">FanzOffc's API</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-code"></i>
           <span>Beranda</span>
         </a>
       </li>
       <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        API Features
-      </div>
+      <div class="sidebar-heading">API Features</div>
+      <!-- Social Media API Section -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-          aria-expanded="true" aria-controls="collapseBootstrap">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#socialMediaAPI" aria-expanded="true">
           <i class="fas fa-fw fa-arrow-down"></i>
           <span>Social Media API</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="socialMediaAPI" class="collapse" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Media Features</h6>
+            <h6 class="collapse-header">Media Features:</h6>
             <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Tiktok Downloader</a>
-            <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=MASUKIN_APIKEY">Tiktok Stalk</a>
           </div>
         </div>
       </li>
+      <!-- Game API Section -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGithub"
-          aria-expanded="true" aria-controls="collapseGithub">
-          <i class="fas fa-fw fa-book"></i>
-          <span>Random API</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gameAPI" aria-expanded="true">
+          <i class="fas fa-fw fa-arrow-down"></i>
+          <span>Game API</span>
         </a>
-        <div id="collapseGithub" class="collapse" aria-labelledby="headingGithub" data-parent="#accordionSidebar">
+        <div id="gameAPI" class="collapse" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Random API</h6>
-            <a class="collapse-item" href="api/randomquote?apikey=MASUKIN_APIKEY">Random Quotes</a>
+            <h6 class="collapse-header">Game Features:</h6>
+            <a class="collapse-item" href="api/ffid/?id=MASUKIN_ID&apikey=MASUKIN_APIKEY">Free Fire ID</a>
+            <a class="collapse-item" href="api/mlid/?id=MASUKIN_ID&apikey=MASUKIN_APIKEY">Mobile Legends ID</a>
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIslamic" aria-expanded="true"
-          aria-controls="collapseIslamic">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Text Maker API</span>
-        </a>
-        <div id="collapseIslamic" class="collapse" aria-labelledby="headingIslamic" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Text Maker API</h6>
-            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&theme=glitch&apikey=MASUKIN_APIKEY">Glitch</a>
-            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&text3=gwganteng&theme=google-suggestion&apikey=MASUKIN_APIKEY">Google Suggestion</a>
-            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=pubg&apikey=MASUKIN_APIKEY">PUBG</a>
-            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=battlefield&apikey=MASUKIN_APIKEY">BattleField</a>
-            <a class="collapse-item" href="api/textmaker/senja?text=FanzOffc&theme=coffee-cup&apikey=MASUKIN_APIKEY">Coffee Cup</a>
-            <a class="collapse-item" href="api/textmaker/senja?text=FanzOffc&theme=coffee-cup2&apikey=MASUKIN_APIKEY">Coffee Cup 2</a>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseother" aria-expanded="true"
-          aria-controls="collapseother">
-          <i class="fab fa-fw fa-wpforms"></i>
-          <span>Other API</span>
-        </a>
-        <div id="collapseother" class="collapse" aria-labelledby="headingother" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Other Menu</h6>
-            <a class="collapse-item" href="api/nulis?text=FanzOffc&apikey=MASUKAN_APIKEY">Nulis Buku</a>
-            <a class="collapse-item" href="api/infonpm?query=FanzOffc-api&hostname=FanzOffc&apikey=MASUKAN_APIKEY">Info NPM</a>
-            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=MASUKAN_APIKEY">Short Link</a>
-          </div>
-        </div>
-      </li>
-      <hr class="sidebar-divider">
-      <span class="nav-link collapsed simple-rest-api">Simple Rest Api🔥</span>
     </ul>
     <!-- Sidebar -->
 
@@ -168,147 +140,49 @@
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+        </nav>
+        <!-- End Topbar -->
 
-          <!-- Profile Dropdown -->
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown no-arrow">
-      <a class="nav-link dropdown-toggle" href="#" id="tasksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-tasks fa-fw"></i>
-        <span class="badge badge-success badge-counter">1</span>
-      </a>
-      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="tasksDropdown">
-        <h6 class="dropdown-header">Profile</h6>
-        <a class="dropdown-item align-items-center" href="#">
-          <div class="mb-3">
-            <div class="small text-dark">Nama :
-              <div class="small float-right"><b>Fanz</b></div>
-            </div>
-          </div>
-        </a>
-        <a class="dropdown-item align-items-center" href="#">
-          <div class="mb-3">
-            <div class="small text-dark">Tanggal Lahir :
-              <div class="small float-right"><b>04/01/2001</b></div>
-            </div>
-          </div>
-        </a>
-        <a class="dropdown-item align-items-center" href="#">
-  <div class="mb-3">
-    <div class="small text-dark">Tempat Tinggal :
-      <div class="small float-right"><b>Jombang-Jawa Timur</b></div>
-    </div>
-  </div>
-</a>
-      </div>
-    </li>
-    <div class="topbar-divider d-none d-sm-block"></div>
-    <li class="nav-item dropdown no-arrow">
-      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
-        <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <!-- Optionally, you can add items here like "Logout" or any user actions -->
-      </div>
-    </li>
-  </ul>
-</nav>
-<!-- End Topbar -->
-
-        <!-- Container Fluid-->
-<div class="container-fluid" id="container-wrapper">
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="./">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Beranda</li>
-    </ol>
-  </div>
-
-  <div class="row mb-3">
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-uppercase mb-1">Developer</div>
-              <br>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">By FanzOffc</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-laptop-code fa-2x text-gray-300"></i>
-            </div>
+        <!-- Container Fluid -->
+        <div class="container-fluid">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
           </div>
 
-          <!-- Menambahkan gambar -->
-          <div class="mt-3">
-            <img src="https://files.catbox.moe/sbrarh.jpg" alt="Gambar Developer" class="img-fluid">
+          <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Developer</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">By FanzOffc</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-laptop-code fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                  <img src="https://files.catbox.moe/sbrarh.jpg" alt="Developer Image">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- Container Fluid -->
       </div>
     </div>
   </div>
 
-<!-- Bagian tambahan untuk Follow GitHub -->
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <p>Simple Rest Api🔥, free donate biar gw lebih semangat ngembanginya hehe:v : 
-        <a href="https://files.catbox.moe/94spf7.jpg" class="btn btn-primary btn-sm" target="_blank">
-          <i class="fas fa-qrcode"></i>&nbsp;QRIS          
-        </a>
-      </p>
+  <!-- Footer -->
+  <footer class="sticky-footer">
+    <div class="container my-auto text-center">
+      <span>Copyright &copy; 2024 - Developed By <a href="#">FanzOffc</a></span>
     </div>
-  </div>
-</div>
-<!-- Container Fluid-->
+  </footer>
+  <!-- Footer -->
 
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span>Copyright &copy; 2024 - Developed By 
-        <b><a href="https://files.catbox.moe/94spf7.jpg" target="_blank">FanzOffc</a></b>
-      </span>
-    </div>
-  </div>
-</footer>
-<!-- Footer -->
-
-
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.js"></script>
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>
