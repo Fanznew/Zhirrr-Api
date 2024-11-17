@@ -1,8 +1,8 @@
 {
-  "name": "FanzBotzz",
+  "name": "Fanz",
   "version": "6.6.0",
   "developer": "FanzOffc",
-  "description": "Simple whatsapp bot with multi device.",
+  "description": "Simple Rest Api.",
   "main": "index.js",
   "type": "commonjs",
   "directories": {
