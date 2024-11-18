@@ -358,7 +358,7 @@ router.get('/removebg', async (req, res) => {
     
     if (!apikeyInput) return res.json(loghandler.notparam);
     if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
-    if (!username) return res.json(loghandler.notusername);
+    if (!url) return res.json(loghandler.noturl);
     if (!image) return res.json({ status: false, message: 'Parameter "image" tidak ditemukan' });
     
     try {
