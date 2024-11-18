@@ -22,6 +22,7 @@ var request = require('request');
 //var TikTokScraper = require('tiktok-scraper');
 const { tikdown } = require("nayan-media-downloader");
 const { removeBg } = require('../lib/removeBg');
+const { Doodstream } = require('../lib/doodstream');
 const axios = require('axios');
 var router  = express.Router();
 
@@ -350,6 +351,36 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             creator: `${creator}`,
             message: "Error, mungkin username anda tidak valid"
         });
+    }
+});
+
+router.get('/doods', async (req, res) => {
+    try {
+        const apikeyInput = req.query.apikey;
+        const url = req.query.url;
+
+        // Validasi parameter
+        if (!apikeyInput) return res.json(loghandler.notparam);
+        if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+        if (!url) return res.json(loghandler.noturl);
+
+        // Proses URL dengan fungsi Doodstream
+        const result = await Doodstream(url);
+
+        // Jika terjadi kesalahan dalam pemrosesan
+        if (result.error) {
+            return res.json({ status: false, message: result.error });
+        }
+
+        // Respons berhasil
+        return res.json({
+            status: true,
+            message: "Berhasil mendapatkan data",
+            result,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.json(loghandler.error);
     }
 });
 
