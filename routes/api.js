@@ -352,7 +352,7 @@ router.get('/tiktod/stalk', async (req, res, next) => {
     }
 });
 
-router.post('/removebg', async (req, res) => {
+router.get('/removebg', async (req, res) => {
     const { apikey, username, image } = req.body;
     
     if (!apikeyInput) return res.json(loghandler.notparam);
