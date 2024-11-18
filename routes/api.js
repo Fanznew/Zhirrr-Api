@@ -373,7 +373,6 @@ router.get('/removebg', async (req, res) => {
             status: true,
             creator: `${creator}`,
             result: {
-                username, // Pastikan `username` didefinisikan
                 image: `data:image/png;base64,${resultImage.toString('base64')}`
             }
         });
