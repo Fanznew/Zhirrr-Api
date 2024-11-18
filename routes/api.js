@@ -355,20 +355,24 @@ router.get('/tiktod/stalk', async (req, res, next) => {
 router.get('/removebg', async (req, res) => {
     var apikeyInput = req.query.apikey,
         url = req.query.url;
-    
+
     if (!apikeyInput) return res.json(loghandler.notparam);
     if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
     if (!url) return res.json(loghandler.noturl);
-    
+
     try {
-        const buffer = Buffer.from(image, 'base64'); // Konversi Base64 ke Buffer
-        const resultImage = await removeBg(buffer);
+        // Download gambar dari URL
+        const response = await axios.get(url, { responseType: 'arraybuffer' });
+        const buffer = Buffer.from(response.data, 'binary'); // Konversi gambar ke buffer
+
+        // Proses penghapusan background
+        const resultImage = await removeBg(buffer); // Sesuaikan implementasi `removeBg`
 
         res.json({
             status: true,
             creator: `${creator}`,
             result: {
-                username,
+                username, // Pastikan `username` didefinisikan
                 image: `data:image/png;base64,${resultImage.toString('base64')}`
             }
         });
