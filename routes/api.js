@@ -21,6 +21,7 @@ var cheerio = require('cheerio');
 var request = require('request');
 //var TikTokScraper = require('tiktok-scraper');
 const { tikdown } = require("nayan-media-downloader");
+const { removeBg } = require('../lib/removeBg');
 var router  = express.Router();
 
 var { color, bgcolor } = require(__path + '/lib/color.js');
@@ -351,6 +352,35 @@ router.get('/tiktod/stalk', async (req, res, next) => {
     }
 });
 
+router.post('/removebg', async (req, res) => {
+    const { apikey, username, image } = req.body;
+    
+    if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+    if (!username) return res.json(loghandler.notusername);
+    if (!image) return res.json({ status: false, message: 'Parameter "image" tidak ditemukan' });
+    
+    try {
+        const buffer = Buffer.from(image, 'base64'); // Konversi Base64 ke Buffer
+        const resultImage = await removeBg(buffer);
+
+        res.json({
+            status: true,
+            creator: `${creator}`,
+            result: {
+                username,
+                image: `data:image/png;base64,${resultImage.toString('base64')}`
+            }
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.json({
+            status: false,
+            creator: `${creator}`,
+            message: 'Terjadi kesalahan: ' + err.message
+        });
+    }
+});
 
 router.get('/randomquote', (req, res, next) => {
     var apikey = req.query.apikey
