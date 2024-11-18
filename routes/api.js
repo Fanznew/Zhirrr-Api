@@ -22,6 +22,7 @@ var request = require('request');
 //var TikTokScraper = require('tiktok-scraper');
 const { tikdown } = require("nayan-media-downloader");
 const { removeBg } = require('../lib/removeBg');
+const axios = require('axios');
 var router  = express.Router();
 
 var { color, bgcolor } = require(__path + '/lib/color.js');
