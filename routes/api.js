@@ -353,7 +353,8 @@ router.get('/tiktod/stalk', async (req, res, next) => {
 });
 
 router.get('/removebg', async (req, res) => {
-    const { apikey, username, image } = req.body;
+    var apikeyInput = req.query.apikey,
+        url = req.query.url;
     
     if (!apikeyInput) return res.json(loghandler.notparam);
     if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
