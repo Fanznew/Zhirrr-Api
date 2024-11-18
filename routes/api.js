@@ -364,23 +364,34 @@ router.get('/doods', async (req, res) => {
         if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
         if (!url) return res.json(loghandler.noturl);
 
-        // Proses URL dengan fungsi Doodstream
+        // Proses dengan fungsi Doodstream
         const result = await Doodstream(url);
 
-        // Jika terjadi kesalahan dalam pemrosesan
         if (result.error) {
-            return res.json({ status: false, message: result.error });
+            return res.json({
+                status: false,
+                message: result.error,
+            });
         }
 
-        // Respons berhasil
-        return res.json({
+        // Respon dengan hasil scraping
+        res.json({
             status: true,
-            message: "Berhasil mendapatkan data",
-            result,
+            message: "Berhasil mengambil data.",
+            data: {
+                title: result.title,
+                duration: result.duration,
+                size: result.size,
+                uploadDate: result.uploadDate,
+                directLink: result.directLink || null,
+            },
         });
     } catch (error) {
-        console.error(error);
-        return res.json(loghandler.error);
+        console.error('Error:', error);
+        res.status(500).json({
+            status: false,
+            message: "Terjadi kesalahan pada server.",
+        });
     }
 });
 
