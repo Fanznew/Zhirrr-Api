@@ -4,11 +4,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', (req, res) => {
-    res.sendFile(__path + '/views/index.html');
-});
+    res.sendFile(__path + '/views/index.html')
+})
 
 router.get('/config', (req, res) => {
-    const config = {
+    config = {
         status: true,
         result: {
             prefix : '/',
@@ -18,13 +18,7 @@ router.get('/config', (req, res) => {
             youtube : '-'
         }
     }
-    res.json(config);
-});
+    res.json(config)
+})
 
-// Tambahkan router.post
-router.post('/submit', (req, res) => {
-    // Logika tambahan jika diperlukan
-    res.sendFile(__path + '/views/index.html'); // Kirim file HTML yang sama
-});
-
-module.exports = router;
+module.exports = router
