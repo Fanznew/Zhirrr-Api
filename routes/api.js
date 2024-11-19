@@ -24,6 +24,7 @@ const { tikdown } = require("nayan-media-downloader");
 const { removeBg } = require('../lib/removeBg');
 const { Doodstream } = require('../lib/doodstream');
 const { swapface } = require('../lib/faceswap');
+const { xnxxdownload } = require('../lib/xnxxdl');
 const axios = require('axios');
 var router  = express.Router();
 
@@ -353,6 +354,30 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             message: "Error, mungkin username anda tidak valid"
         });
     }
+});
+
+router.get('/xnxxdl', async (req, res) => {
+  const apikeyInput = req.query.apikey;
+  const url = req.query.url;
+  
+  if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+    if (!url) return res.json(loghandler.noturl);
+    
+    try {
+    const result = await xnxxdownload(url);
+    res.json({
+      status: true,
+      creator: creator,
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      creator: creator,
+      message: error.result || 'Terjadi kesalahan.',
+    });
+  }
 });
 
 // Definisikan route untuk faceswap
