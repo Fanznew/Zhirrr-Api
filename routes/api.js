@@ -25,6 +25,7 @@ const { removeBg } = require('../lib/removeBg');
 const { Doodstream } = require('../lib/doodstream');
 const { swapface } = require('../lib/faceswap');
 const { xnxxdownload } = require('../lib/xnxxdl');
+const xnxxSearch = require("../lib/xnxxsearch");
 const axios = require('axios');
 var router  = express.Router();
 
@@ -378,6 +379,30 @@ router.get('/xnxxdl', async (req, res) => {
       message: error.result || 'Terjadi kesalahan.',
     });
   }
+});
+
+router.get("/xnxxsearch", async (req, res) => {
+    const { apikey, query } = req.query;
+
+    // Validasi parameter
+    if (!apikey) return res.json(loghandler.notparam);
+    if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
+    if (!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+
+    try {
+        const result = await xnxxSearch(query);
+        res.json({
+            status: true,
+            creator: creator,
+            data: result,
+        });
+    } catch (error) {
+        res.json({
+            status: false,
+            creator: creator,
+            message: error.message || "Terjadi kesalahan.",
+        });
+    }
 });
 
 // Definisikan route untuk faceswap
