@@ -377,7 +377,6 @@ router.get('/faceswap', async (req, res) => {
         status: true,
         creator: 'FanzOffc',
         user_id,
-        status,
         result_img_url
       });
     } else {
