@@ -359,35 +359,11 @@ router.get('/tiktod/stalk', async (req, res, next) => {
 router.get('/faceswap', async (req, res) => {
   const apikeyInput = req.query.apikey;
   const url = req.query.url;
-  const username = req.query.username;
 
-  if (!apikeyInput) {
-    return res.status(400).json({
-      status: false,
-      message: 'API key is required'
-    });
-  }
-
-  if (apikeyInput !== 'FanzOffc') {
-    return res.status(401).json({
-      status: false,
-      message: 'Invalid API key'
-    });
-  }
-
-  if (!username) {
-    return res.status(400).json({
-      status: false,
-      message: 'Username is required'
-    });
-  }
-
-  if (!url) {
-    return res.status(400).json({
-      status: false,
-      message: 'URL parameter is required'
-    });
-  }
+  // Validasi parameter
+  if (!apikeyInput) return res.json({ status: false, message: 'API key is required' });
+  if (apikeyInput !== 'FanzOffc') return res.json({ status: false, message: 'Invalid API key' });
+  if (!url) return res.json({ status: false, message: 'URL parameter is required' });
 
   try {
     // Parsing URL untuk mendapatkan target dan source
@@ -396,39 +372,29 @@ router.get('/faceswap', async (req, res) => {
     const source = urlParams.get('source');
 
     if (!target || !source) {
-      return res.status(400).json({
-        status: false,
-        message: 'Both target and source images are required in the URL'
-      });
+      return res.json({ status: false, message: 'Both target and source images are required in the URL' });
     }
 
     // Panggil fungsi face swap dari faceswap.js
     const result = await swapface.create(target, source);
 
-    // Memastikan data yang didapatkan dari API eksternal
+    // Pastikan respons valid
     if (result && result.data) {
       const { user_id, result_img_url, status } = result.data;
-      return res.status(200).json({
+      return res.json({
         status: true,
-        creator: '${creator}',
-        user_id: user_id,
-        status: status,
-        result_img_url: result_img_url
+        creator: 'FanzOffc',
+        user_id,
+        status,
+        result_img_url
       });
     } else {
-      return res.status(500).json({
-        status: false,
-        message: 'Failed to process face swap or invalid response'
-      });
+      return res.json({ status: false, message: 'Failed to process face swap or invalid response' });
     }
 
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      status: false,
-      message: 'Error during face swap',
-      error: error.message
-    });
+    // Menangani error
+    return res.json({ status: false, message: 'Error during face swap', error: error.message });
   }
 });
 
