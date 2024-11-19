@@ -26,6 +26,7 @@ const { Doodstream } = require('../lib/doodstream');
 const { swapface } = require('../lib/faceswap');
 const { xnxxdownload } = require('../lib/xnxxdl');
 const xnxxSearch = require("../lib/xnxxsearch");
+const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
 const axios = require('axios');
 var router  = express.Router();
 
@@ -354,6 +355,48 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             creator: `${creator}`,
             message: "Error, mungkin username anda tidak valid"
         });
+    }
+});
+
+router.get("/play", async (req, res) => {
+    const { apikey, query } = req.query;
+
+    // Validasi parameter
+    if (!apikey) return res.json(loghandler.notparam);
+    if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
+    if (!query) return res.json({ status: false, creator, message: "Masukkan parameter query." });
+
+    try {
+        // Panggil fungsi pencarian dari modul scrape.js
+        let video = await searchYouTube(query);
+        let { title, thumbnail, videoId } = video;
+        let url = "https://youtu.be/" + videoId;
+
+        // Panggil fungsi untuk mengunduh audio dan video
+        let audioData = await downloadAudio(url);
+        let videoUrl = await downloadVideo(url);
+
+        // Kirim respons
+        res.json({
+            status: true,
+            creator,
+            result: {
+                title,
+                url,
+                audio: {
+                    url: audioData.audio,
+                    fileName: `${audioData.title}.mp3`,
+                },
+                video: {
+                    url: videoUrl,
+                    fileName: `${title}.mp4`,
+                },
+                thumbnail: `data:image/jpeg;base64,${audioData.thumbnail}`,
+            },
+        });
+    } catch (err) {
+        console.error(err);
+        res.json({ status: false, creator, message: "Terjadi kesalahan, coba lagi nanti." });
     }
 });
 
