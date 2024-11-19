@@ -23,6 +23,7 @@ var request = require('request');
 const { tikdown } = require("nayan-media-downloader");
 const { removeBg } = require('../lib/removeBg');
 const { Doodstream } = require('../lib/doodstream');
+const { swapface } = require('../lib/faceswap');
 const axios = require('axios');
 var router  = express.Router();
 
@@ -352,6 +353,33 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             message: "Error, mungkin username anda tidak valid"
         });
     }
+});
+
+// Definisikan route untuk faceswap
+app.get('/faceswap', async (req, res) => {
+  const apikeyInput = req.query.apikey;
+  const url = req.query.url;
+
+  if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+    if (!username) return res.json(loghandler.notusername);
+
+  try {
+    // URL harus mengandung 2 parameter, target dan source (misalnya url?target=<target_image>&source=<source_image>)
+    const urlParams = new URLSearchParams(url);
+    const target = urlParams.get('target');
+    const source = urlParams.get('source');
+
+    if (!target || !source) {
+      return res.json({ error: 'Both target and source images are required in the URL' });
+    }
+
+    // Panggil fungsi faceswap dari faceswap.js
+    const result = await swapface.create(target, source);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Error during face swap', message: error.message });
+  }
 });
 
 router.get('/doods', async (req, res) => {
