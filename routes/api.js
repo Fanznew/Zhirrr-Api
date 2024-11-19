@@ -356,29 +356,79 @@ router.get('/tiktod/stalk', async (req, res, next) => {
 });
 
 // Definisikan route untuk faceswap
-router.get('/faceswap', async (req, res) => {
+app.get('/faceswap', async (req, res) => {
   const apikeyInput = req.query.apikey;
   const url = req.query.url;
+  const username = req.query.username;
 
-  if (!apikeyInput) return res.json(loghandler.notparam);
-    if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
-    if (!username) return res.json(loghandler.notusername);
+  if (!apikeyInput) {
+    return res.status(400).json({
+      status: false,
+      message: 'API key is required'
+    });
+  }
+
+  if (apikeyInput !== 'FanzOffc') {
+    return res.status(401).json({
+      status: false,
+      message: 'Invalid API key'
+    });
+  }
+
+  if (!username) {
+    return res.status(400).json({
+      status: false,
+      message: 'Username is required'
+    });
+  }
+
+  if (!url) {
+    return res.status(400).json({
+      status: false,
+      message: 'URL parameter is required'
+    });
+  }
 
   try {
-    // URL harus mengandung 2 parameter, target dan source (misalnya url?target=<target_image>&source=<source_image>)
+    // Parsing URL untuk mendapatkan target dan source
     const urlParams = new URLSearchParams(url);
     const target = urlParams.get('target');
     const source = urlParams.get('source');
 
     if (!target || !source) {
-      return res.json({ error: 'Both target and source images are required in the URL' });
+      return res.status(400).json({
+        status: false,
+        message: 'Both target and source images are required in the URL'
+      });
     }
 
-    // Panggil fungsi faceswap dari faceswap.js
+    // Panggil fungsi face swap dari faceswap.js
     const result = await swapface.create(target, source);
-    res.json(result);
+
+    // Memastikan data yang didapatkan dari API eksternal
+    if (result && result.data) {
+      const { user_id, result_img_url, status } = result.data;
+      return res.status(200).json({
+        status: true,
+        creator: '${creator}',
+        user_id: user_id,
+        status: status,
+        result_img_url: result_img_url
+      });
+    } else {
+      return res.status(500).json({
+        status: false,
+        message: 'Failed to process face swap or invalid response'
+      });
+    }
+
   } catch (error) {
-    res.status(500).json({ error: 'Error during face swap', message: error.message });
+    console.error(error);
+    return res.status(500).json({
+      status: false,
+      message: 'Error during face swap',
+      error: error.message
+    });
   }
 });
 
