@@ -362,8 +362,8 @@ router.get('/faceswap', async (req, res) => {
   const source = req.query.source;
 
   // Validasi parameter
-  if (!apikeyInput) return res.json({ status: false, message: 'API key is required' });
-  if (apikeyInput !== 'FanzOffc') return res.json({ status: false, message: 'Invalid API key' });
+  if (!apikeyInput) return res.json(loghandler.notparam);
+  if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
   if (!target) return res.json({ status: false, message: 'Target image URL is required' });
   if (!source) return res.json({ status: false, message: 'Source image URL is required' });
 
