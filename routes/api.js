@@ -356,7 +356,7 @@ router.get('/tiktod/stalk', async (req, res, next) => {
 });
 
 // Definisikan route untuk faceswap
-app.get('/faceswap', async (req, res) => {
+router.get('/faceswap', async (req, res) => {
   const apikeyInput = req.query.apikey;
   const url = req.query.url;
   const username = req.query.username;
