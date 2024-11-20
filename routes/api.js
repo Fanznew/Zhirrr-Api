@@ -25,7 +25,7 @@ const { removeBg } = require('../lib/removeBg');
 const { Doodstream } = require('../lib/doodstream');
 const { swapface } = require('../lib/faceswap');
 const { xnxxdownload } = require('../lib/xnxxdl');
-const xnxxSearch = require("../lib/xnxxsearch");
+const { xnxxSearch } = require("../lib/xnxxsearch");
 const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
 const axios = require('axios');
 var router  = express.Router();
@@ -396,7 +396,7 @@ router.get("/play", async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.json({ status: false, creator, message: "Terjadi kesalahan, coba lagi nanti." });
+        res.json(loghandler.error)
     }
 });
 
