@@ -301,7 +301,7 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        let { view, comment, play, share, duration, title, video, audio } = result.data;
+        let { comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
@@ -310,7 +310,6 @@ router.get('/tiktod', async (req, res, next) => {
             message: "Video fetched successfully",
             data: {
                 title,
-                view,
                 comment,
                 play,
                 share,
@@ -391,14 +390,10 @@ router.get('/videy', async (req, res) => {
       code: result.code,
       message: result.message,
     });
-  } catch (error) {
-    res.json({
-      status: false,
-      creator: `${creator}`,
-      code: 500,
-      message: 'Terjadi kesalahan pada server!',
-    });
-  }
+  } catch (err) {
+        console.error(err);
+        res.json(loghandler.invalidlink);
+    }
 });
 
 router.get("/play", async (req, res) => {
