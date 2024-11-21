@@ -289,7 +289,7 @@ router.get('/remove', (req, res, next) => {
 })
 
 // Route for fetching TikTok video details without watermark
-router.get('/tiktod', async (req, res, next) => {
+/*/router.get('/tiktod', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         url = req.query.url;
 
@@ -297,42 +297,41 @@ router.get('/tiktod', async (req, res, next) => {
     if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
     if (!url) return res.json(loghandler.noturl);
 
-    const urlRegex = /^(https?:\/\/)?(www\.)?(vt\.tiktok\.com|tiktok\.com)\/[a-zA-Z0-9]+$/;
-    if (!urlRegex.test(url)) {
-        return res.status(400).json(loghandler.invalidlink);
-    }
-
     try {
-        // Memanggil tikdown untuk mendapatkan data video
-        const result = await tikdown(url);
+        // Fetch TikTok video data using tikdown
+        let result = await tikdown(url);
 
-        if (!result || !result.data) {
-            throw new Error("Failed to fetch video data, response is empty or invalid");
-        }
+        // Destructure the required data
+        let { view, comment, play, share, duration, title, video, audio } = result.data;
 
-        //const { view, comment, play, share, duration, title, video, audio } = result.data;
-
-        // Respons sukses
+        // Send the video URL and metadata in the response
         res.json({
             status: true,
-            creator: creator,
+            creator: `${creator}`,
             message: "Video fetched successfully",
-            data: result.data
+            data: {
+                title,
+                view,
+                comment,
+                play,
+                share,
+                duration,
+                video_url: video,
+                audio_url: audio
+            }
         });
-    } catch (err) {
-        console.error("Error processing TikTok URL:", err.message || err);
 
-        // Respons error jika tikdown gagal memproses URL
-        res.status(500).json({
-            status: false,
-            message: "An error occurred while fetching the video",
-            error: "Invalid or incomplete TikTok URL",
-        });
+        // You can also use a messaging library to send the message with the video if needed
+        // conn.sendMessage(m.chat, { video: { url: video }, caption: title }, { quoted: m });
+
+    } catch (err) {
+        console.error(err);
+        res.json(loghandler.invalidlink);
     }
-});
+});*/
 
 // Route to stalk TikTok user profile
-router.get('/tiktod/stalk', async (req, res, next) => {
+/*/router.get('/tiktod/stalk', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         username = req.query.username;
 
@@ -358,7 +357,7 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             message: "Error, mungkin username anda tidak valid"
         });
     }
-});
+});*/
 
 router.get('/videy', async (req, res) => {
   const apikeyInput = req.query.apikey;
