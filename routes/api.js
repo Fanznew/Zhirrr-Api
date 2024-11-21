@@ -27,6 +27,7 @@ const { swapface } = require('../lib/faceswap');
 const { xnxxdownload } = require('../lib/xnxxdl');
 const xnxxSearch = require("../lib/xnxxsearch");
 const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
+const videy = require('../lib/videy');
 const axios = require('axios');
 var router  = express.Router();
 
@@ -301,22 +302,14 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        let { comment, play, share, duration, title, video, audio } = result.data;
+        //let { comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
             status: true,
             creator: `${creator}`,
             message: "Video fetched successfully",
-            data: {
-                title,
-                comment,
-                play,
-                share,
-                duration,
-                video_url: video,
-                audio_url: audio
-            }
+            data: result.data
         });
 
         // You can also use a messaging library to send the message with the video if needed
