@@ -309,7 +309,7 @@ router.get('/tiktod', async (req, res, next) => {
             status: true,
             creator: `${creator}`,
             message: "Video fetched successfully",
-            data: result.data
+            data: result.data;
         });
 
         // You can also use a messaging library to send the message with the video if needed
@@ -355,28 +355,28 @@ router.get('/videy', async (req, res) => {
   const url = req.query.url;
 
   // Validasi parameter
-  if (!apikeyInput) return res.json(loghandler.notparam);
-  if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
-  if (!url) return res.json(loghandler.noturl);
+  if (!apikeyInput) return res.json({ status: false, code: 400, message: 'API key tidak ditemukan!' });
+  if (apikeyInput !== 'FanzOffc') return res.json({ status: false, code: 401, message: 'API key tidak valid!' });
+  if (!url) return res.json({ status: false, code: 400, message: 'Parameter URL tidak ditemukan!' });
 
-  // Gunakan modul scraper untuk konversi video
   try {
+    // Gunakan fungsi scraper
     const result = await videy.convert(url);
 
-    // Respons sukses
+    // Jika status sukses, pastikan data disusun dengan benar
     if (result.status) {
       return res.json({
         status: true,
         creator: `${creator}`,
         code: result.code,
         data: {
-          mimeType: result.mimeType,
-          link: result.link,
+          mimeType: result.mimeType, // Properti mimeType
+          link: result.link, // Properti link
         },
       });
     }
 
-    // Respons error dari scraper
+    // Respons error jika result.status === false
     res.json({
       status: false,
       creator: `${creator}`,
