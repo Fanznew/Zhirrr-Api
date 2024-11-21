@@ -309,16 +309,7 @@ router.get('/tiktod', async (req, res, next) => {
             status: true,
             creator: `${creator}`,
             message: "Video fetched successfully",
-            data: {
-                title,
-                view,
-                comment,
-                play,
-                share,
-                duration,
-                video_url: video,
-                audio_url: audio
-            }
+            data: result.data
         });
 
         // You can also use a messaging library to send the message with the video if needed
