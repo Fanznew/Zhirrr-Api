@@ -358,6 +358,49 @@ router.get('/tiktod/stalk', async (req, res, next) => {
     }
 });
 
+router.get('/videy', async (req, res) => {
+  const apikeyInput = req.query.apikey;
+  const url = req.query.url;
+
+  // Validasi parameter
+  if (!apikeyInput) return res.json(loghandler.notparam);
+  if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+  if (!url) return res.json(loghandler.noturl);
+
+  // Gunakan modul scraper untuk konversi video
+  try {
+    const result = await videy.convert(url);
+
+    // Respons sukses
+    if (result.status) {
+      return res.json({
+        status: true,
+        creator: `${creator}`,
+        code: result.code,
+        data: {
+          mimeType: result.mimeType,
+          link: result.link,
+        },
+      });
+    }
+
+    // Respons error dari scraper
+    res.json({
+      status: false,
+      creator: `${creator}`,
+      code: result.code,
+      message: result.message,
+    });
+  } catch (error) {
+    res.json({
+      status: false,
+      creator: `${creator}`,
+      code: 500,
+      message: 'Terjadi kesalahan pada server!',
+    });
+  }
+});
+
 router.get("/play", async (req, res) => {
     const { apikey, query } = req.query;
 
