@@ -302,7 +302,7 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        //let { comment, play, share, duration, title, video, audio } = result.data;
+        let { view, comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
