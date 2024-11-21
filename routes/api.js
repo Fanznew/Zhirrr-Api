@@ -302,14 +302,23 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        //let { view, comment, play, share, duration, title, video, audio } = result.data;
+        let { view, comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
             status: true,
             creator: `${creator}`,
             message: "Video fetched successfully",
-            data: result.data
+            data: {
+                title,
+                view,
+                comment,
+                play,
+                share,
+                duration,
+                video_url: video,
+                audio_url: audio
+            }
         });
 
         // You can also use a messaging library to send the message with the video if needed
