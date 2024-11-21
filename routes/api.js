@@ -301,7 +301,7 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        let { comment, play, share, duration, title, video, audio } = result.data;
+        let { view, comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
@@ -310,6 +310,7 @@ router.get('/tiktod', async (req, res, next) => {
             message: "Video fetched successfully",
             data: {
                 title,
+                view,
                 comment,
                 play,
                 share,
@@ -354,45 +355,6 @@ router.get('/tiktod/stalk', async (req, res, next) => {
             creator: `${creator}`,
             message: "Error, mungkin username anda tidak valid"
         });
-    }
-});
-
-router.get('/videy', async (req, res) => {
-  const apikeyInput = req.query.apikey;
-  const url = req.query.url;
-
-  // Validasi parameter
-  if (!apikeyInput) return res.json(loghandler.notparam);
-  if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
-  if (!url) return res.json(loghandler.noturl);
-
-  // Gunakan modul scraper untuk konversi video
-  try {
-    const result = await videy.convert(url);
-
-    // Respons sukses
-    if (result.status) {
-      return res.json({
-        status: true,
-        creator: `${creator}`,
-        code: result.code,
-        data: {
-          mimeType: result.mimeType,
-          link: result.link,
-        },
-      });
-    }
-
-    // Respons error dari scraper
-    res.json({
-      status: false,
-      creator: `${creator}`,
-      code: result.code,
-      message: result.message,
-    });
-  } catch (err) {
-        console.error(err);
-        res.json(loghandler.invalidlink);
     }
 });
 
