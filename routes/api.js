@@ -302,14 +302,23 @@ router.get('/tiktod', async (req, res, next) => {
         let result = await tikdown(url);
 
         // Destructure the required data
-        let { view, comment, play, share, duration, title, video, audio } = result.data;
+        //let { view, comment, play, share, duration, title, video, audio } = result.data;
 
         // Send the video URL and metadata in the response
         res.json({
             status: true,
             creator: `${creator}`,
             message: "Video fetched successfully",
-            data: result.data
+            data: {
+                title,
+                view,
+                comment,
+                play,
+                share,
+                duration,
+                video_url: video,
+                audio_url: audio
+            }
         });
 
         // You can also use a messaging library to send the message with the video if needed
@@ -355,9 +364,9 @@ router.get('/videy', async (req, res) => {
   const url = req.query.url;
 
   // Validasi parameter
-  if (!apikeyInput) return res.json({ status: false, code: 400, message: 'API key tidak ditemukan!' });
-  if (apikeyInput !== 'FanzOffc') return res.json({ status: false, code: 401, message: 'API key tidak valid!' });
-  if (!url) return res.json({ status: false, code: 400, message: 'Parameter URL tidak ditemukan!' });
+  if (!apikeyInput) return res.json(loghandler.notparam);
+    if (apikeyInput !== 'FanzOffc') return res.json(loghandler.invalidKey);
+    if (!url) return res.json(loghandler.noturl);
 
   try {
     // Gunakan fungsi scraper
