@@ -367,20 +367,27 @@ router.get("/pinterest", async (req, res) => {
     if (!apikey) return res.json(loghandler.notparam);
     if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
     if (!query) return res.json({ status: false, creator, message: "Masukkan parameter query." });
+    if (!numImages || isNaN(numImages) || numImages <= 0) {
+        return res.json({ status: false, creator, message: "Masukkan parameter numImages yang valid (angka > 0)." });
+    }
 
     try {
-        const images = await ambilGambarPinterest(query, numImages ? parseInt(numImages) : 1);
+        // Mengambil gambar berdasarkan query dan jumlah gambar yang diminta
+        const images = await ambilGambarPinterest(query, parseInt(numImages));
+
+        // Mengembalikan respons sesuai format yang diminta, termasuk jumlah gambar
         res.json({
             status: true,
             creator: creator,
-            numImages: images.length,
-            result: images
+            numImages: images.length, // Menambahkan jumlah gambar yang diambil
+            result: images,
         });
     } catch (error) {
+        // Jika terjadi error, memberikan pesan error dan status false
         res.json({
             status: false,
             creator: creator,
-            message: error.message
+            message: error.message,
         });
     }
 });
