@@ -28,6 +28,7 @@ const { xnxxdownload } = require('../lib/xnxxdl');
 const xnxxSearch = require("../lib/xnxxsearch");
 const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
 const videy = require('../lib/videy');
+const { ambilGambarPinterest } = require("../lib/pinterest");
 const axios = require('axios');
 var router  = express.Router();
 
@@ -358,6 +359,30 @@ router.get('/remove', (req, res, next) => {
         });
     }
 });*/
+
+router.get("/pinterest", async (req, res) => {
+    const { apikey, query, numImages } = req.query;
+
+    // Validasi parameter
+    if (!apikey) return res.json(loghandler.notparam);
+    if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
+    if (!query) return res.json({ status: false, creator, message: "Masukkan parameter query." });
+
+    try {
+        const images = await ambilGambarPinterest(query, numImages ? parseInt(numImages) : 1);
+        res.json({
+            status: true,
+            creator: creator,
+            result: images
+        });
+    } catch (error) {
+        res.json({
+            status: false,
+            creator: creator,
+            message: error.message
+        });
+    }
+});
 
 router.get('/videy', async (req, res) => {
   const apikeyInput = req.query.apikey;
