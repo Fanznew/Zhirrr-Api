@@ -373,6 +373,7 @@ router.get("/pinterest", async (req, res) => {
         res.json({
             status: true,
             creator: creator,
+            numImages: images.length,
             result: images
         });
     } catch (error) {
