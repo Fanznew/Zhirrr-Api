@@ -30,6 +30,7 @@ const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
 const videy = require('../lib/videy');
 const { ambilGambarPinterest } = require("../lib/pinterest");
 const { pinterest2 } = require('../lib/pinterest2');
+const gemini = require('../lib/gemini');
 const axios = require('axios');
 var router  = express.Router();
 
