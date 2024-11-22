@@ -29,6 +29,7 @@ const xnxxSearch = require("../lib/xnxxsearch");
 const { searchYouTube, downloadAudio, downloadVideo } = require("../lib/play");
 const videy = require('../lib/videy');
 const { ambilGambarPinterest } = require("../lib/pinterest");
+const { pinterest2 } = require('../lib/pinterest2');
 const axios = require('axios');
 var router  = express.Router();
 
@@ -359,6 +360,41 @@ router.get('/remove', (req, res, next) => {
         });
     }
 });*/
+
+router.get("/pinterest2", async (req, res) => {
+  const { apikey, query, numImages } = req.query;
+
+  // Validasi parameter
+  if (!apikey) return res.json(loghandler.notparam);
+  if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
+  if (!query) return res.json({ status: false, message: "Masukkan parameter query." });
+  if (!numImages || isNaN(numImages) || numImages <= 0) {
+    return res.json({ status: false, message: "Masukkan parameter numImages yang valid (angka > 0)." });
+  }
+
+  try {
+    // Mengambil gambar berdasarkan query dan jumlah gambar yang diminta
+    const imagesResult = await pinterest2(query);
+
+    // Membatasi jumlah gambar yang dikembalikan sesuai dengan parameter numImages
+    const limitedImages = imagesResult.result.slice(0, parseInt(numImages));
+
+    // Mengembalikan respons sesuai format yang diminta, termasuk jumlah gambar
+    res.json({
+      status: true,
+      creator: creator,
+      numImages: limitedImages.length, // Menambahkan jumlah gambar yang diambil
+      result: limitedImages,
+    });
+  } catch (error) {
+    // Jika terjadi error, memberikan pesan error dan status false
+    res.json({
+      status: false,
+      creator: creator,
+      message: error.message,
+    });
+  }
+});
 
 router.get("/pinterest", async (req, res) => {
     const { apikey, query, numImages } = req.query;
