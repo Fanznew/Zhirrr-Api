@@ -361,6 +361,44 @@ router.get('/remove', (req, res, next) => {
     }
 });*/
 
+router.get("/gemini", async (req, res) => {
+  const { apikey, query } = req.query;
+
+  // Validasi parameter
+  if (!apikey) return res.json(loghandler.notparam);
+  if (apikey !== "FanzOffc") return res.json(loghandler.invalidKey);
+  if (!query) return res.json({ status: false, creator, message: "Masukkan parameter query." });
+
+  try {
+    const options = {
+      messages: [{ role: "user", content: query }],
+    };
+    const response = await gemini(options);
+
+    if (response.success) {
+      return res.json({
+        status: true,
+        creator: `${creator}`,
+        message: response.answer,
+      });
+    } else {
+      return res.json({
+        status: false,
+        creator: `${creator}`,
+        message: "Gagal mendapatkan respons.",
+        errors: response.errors,
+      });
+    }
+  } catch (error) {
+    return res.json({
+      status: false,
+      creator: `${creator}`,
+      message: "Terjadi kesalahan.",
+      error: error.message,
+    });
+  }
+});
+
 router.get("/pinterest2", async (req, res) => {
   const { apikey, query, numImages } = req.query;
 
