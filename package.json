@@ -1,21 +1,12 @@
 {
   "name": "Fanz",
-  "version": "6.6.0",
-  "developer": "FanzOffc",
+  "version": "1.0.0",
   "description": "Simple Rest Api.",
   "main": "index.js",
-  "type": "commonjs",
-  "directories": {
-    "lib": "lib",
-    "message": "message"
-  },
-  "engines": {
-    "node": "20.x",
-    "npm": "10.x"
-  },
   "scripts": {
-    "start": "node --optimize_for_size --max_old_space_size=512 --gc_interval=100 index.js "
+    "start": "node index.js"
   },
+  "keywords": [],
   "author": "Fanz",
   "license": "ISC",
   "dependencies": {
